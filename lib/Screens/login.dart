@@ -11,6 +11,12 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  @override
+  void initState() {
+    checkLog();
+    super.initState();
+  }
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   @override
@@ -87,7 +93,7 @@ class _LoginState extends State<Login> {
     FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
         .then((value) => {
           Navigator.pushNamed(context, '/dashboard'),
-    }).catchError((err)=>print(err.code)
+    }).catchError((err)=>{print(err)}
     // TODO: Add error handling
         );
   }
